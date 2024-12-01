@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../components/button.dart';
@@ -37,6 +38,15 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
+  // Function to show a toast message
+  Future<void> _showToast(String message) async {
+    showToast(
+      message,
+      context: context,
+      backgroundColor: const Color.fromARGB(255, 59, 99, 168),
+    );
+  }
+
   Future<void> _checkLoginStatus() async {
     final isLoggedIn = await _auth.isLoggedIn();
     if (isLoggedIn) {
@@ -63,26 +73,39 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> loginAct() async {
     final email = _emailInput.text;
     final password = _passwordInput.text;
+
+    if (!RegExp(
+            r'^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$')
+        .hasMatch(email)) {
+      return _showToast('Enter a valid Email address');
+    }
+
+    if (password.length < 8) {
+      return _showToast('Password must be at least 8 characters long.');
+    }
+
+    final response = await _auth.login(email, password);
     final username = await Supabase.instance.client
         .from('user_credentials')
         .select('user')
         .eq('email', email)
         .single();
-
-    final response = await _auth.login(email, password);
     final catchUser = username['user'];
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        duration: const Duration(seconds: 2),
-        content: Text(response),
-        elevation: 30,
-        backgroundColor: Colors.green,
-      ), // Show response message
-    );
-
     if (response.startsWith("Login successful")) {
+      await _showToast("Login successful");
       _onLoginSuccess(email, catchUser);
+      return;
+    }
+
+    if (response.startsWith('Login failed: Incorrect Credentials')) {
+      await _showToast("Incorrect Password");
+      return;
+    }
+
+    if (response.startsWith('Try Again please')) {
+      await _showToast("Incorrect Email");
+      return;
     }
   }
 
@@ -139,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 10),
                 GlassBox(
-                  height: 0.55,
+                  height: screen.height * 0.00085,
                   child: Container(
                     padding: const EdgeInsets.only(left: 45, right: 45),
                     child: Column(

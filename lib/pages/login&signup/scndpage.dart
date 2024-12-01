@@ -89,7 +89,7 @@ class _SignUpState extends State<SignUp> {
                     height: 5,
                   ),
                   GlassBox(
-                    height: 0.5,
+                    height: screen.height * 0.00085,
                     child: Container(
                       padding: const EdgeInsets.only(left: 45, right: 45),
                       child: Column(

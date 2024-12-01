@@ -132,6 +132,17 @@ class SharedPreferencesHelper {
     await prefs.setStringList('todos', updatedJson);
   }
 
+  static Future<void> updateTodoStatus(String id, bool status) async {
+    List<Task> todos = await getTodoList();
+    for (int i = 0; i < todos.length; i++) {
+      if (todos[i].id == id) {
+        todos[i] = todos[i].copyWith(status: status);
+        break;
+      }
+    }
+    await saveTodoList(todos);
+  }
+
   static Future<void> deleteTodo(String id) async {
     List<Task> todos = await getTodoList();
     todos.removeWhere((todo) => todo.id == id);

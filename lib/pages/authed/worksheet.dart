@@ -252,7 +252,7 @@ class _WorkAreaState extends State<WorkArea> {
                   ),
                   const Divider(),
                   const SizedBox(
-                    height: 50,
+                    height: 10,
                   ),
                   if (isLoggedIn)
                     ListTile(
@@ -290,7 +290,7 @@ class _WorkAreaState extends State<WorkArea> {
                         borderRadius: 5),
                   ),
                   const SizedBox(
-                    height: 120,
+                    height: 60,
                   ),
                   ListTile(
                     onTap: () {

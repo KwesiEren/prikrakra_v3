@@ -14,6 +14,21 @@ class Task {
     required this.status,
   });
 
+  // Create a copy of the Task with some updated fields
+  Task copyWith({
+    String? id,
+    String? title,
+    String? details,
+    bool? status,
+  }) {
+    return Task(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      details: details ?? this.details,
+      status: status ?? this.status,
+    );
+  }
+
   // Convert a Todo object to a Map for storage in SharedPreferences
   Map<String, dynamic> toMap() {
     return {'id': id, 'title': title, 'details': details, 'status': status};
