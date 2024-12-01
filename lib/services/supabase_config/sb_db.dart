@@ -1,3 +1,4 @@
+import 'package:sqflite/utils/utils.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../models/task.dart';
@@ -51,6 +52,31 @@ class SupaDB {
     //Updates element in the table by ID
     final sync = {'isSynced': true};
     await Supabase.instance.client.from('todoTable').update(sync);
+  }
+
+  Future<int> countTaskCreated(String user) async {
+    final response = await Supabase.instance.client
+        .from('todoTable')
+        .count()
+        .eq('user', user);
+
+    return response;
+  }
+
+  // Count the number of completed or uncompleted tasks for a specific user
+  Future<int> countTasksByStatus(String user, bool isCompleted) async {
+    final response = await Supabase.instance.client
+            .from('todoTable')
+            .count()
+            .eq('user', user)
+            .eq(
+                'status',
+                isCompleted
+                    ? 'completed'
+                    : 'notcompleted') // Assuming 'status' holds task status
+        ;
+
+    return response;
   }
 
   // delete Todo from Supabase database
