@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'pages/home.dart';
+import 'pages/statistics_page.dart';
 import 'pages/login&signup/firstpage.dart';
 import 'pages/login&signup/scndpage.dart';
 import 'pages/survey.dart';
