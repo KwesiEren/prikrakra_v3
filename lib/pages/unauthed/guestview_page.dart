@@ -39,7 +39,7 @@ class _GuestviewPageState extends State<GuestviewPage> {
     });
   }
 
-  void _toggleTodoStatus(int index) async {
+  void _toggleTaskStatus(int index) async {
     final updatedStatus = !_guestTask[index]!.status;
     setState(() {
       _guestTask[index]!.status = updatedStatus;
@@ -237,7 +237,7 @@ class _GuestviewPageState extends State<GuestviewPage> {
                             title: GuestTask(
                               taskName: _guestTask[index]!.title,
                               taskCompleted: _guestTask[index]!.status,
-                              onChanged: (value) => _toggleTodoStatus(index),
+                              onChanged: (value) => _toggleTaskStatus(index),
                               taskDetail: _guestTask[index]!.details,
                             ),
                             trailing: IconButton(

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-import 'pages/home.dart';
 import 'pages/login&signup/firstpage.dart';
-import 'pages/login&signup/scndpage.dart';
+import 'pages/login&signup/secondpage.dart';
+import 'pages/statisticspage.dart';
 import 'pages/survey.dart';
 import 'pages/unauthed/guestview_page.dart';
-import 'pages/welcmpage.dart';
+import 'pages/welcomepage.dart';
 import 'services/localdb_config/db_provider.dart';
 
 // Okay so to get it out there I am not good at explaining

@@ -26,11 +26,9 @@ class _OnlyUserTaskState extends State<OnlyUserTask> {
 
   void initState() {
     super.initState();
-    // _initializeInternetChecker(); //Check internet status on init
-    //loadData();
-    //_loadLocalTodos();
+
     _loadUserTodos(); // Call all local database task on init
-    // _checkUserInDatabase(); // Call user email on init
+
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       _runPeriodicFunction();
     });
@@ -42,28 +40,6 @@ class _OnlyUserTaskState extends State<OnlyUserTask> {
     await _syncLocalTodosToSupabase();
     debugPrint('Sync is running every 30 seconds');
   }
-
-  // Fetch all todos from local database
-  // Future<List> _loadLocalTodos() async {
-  //   setState(() {
-  //     isLoading = true;
-  //   });
-  //   try {
-  //     final todos = await AppDB.instance.getAllTodo();
-  //     setState(() {
-  //       _todoList = todos.map((todo) {
-  //         todo?.isSynced = false; // Mark as unsynced when loaded
-  //         return todo;
-  //       }).toList();
-  //       isLoading = false;
-  //     });
-  //   } catch (e) {
-  //     setState(() {
-  //       isLoading = false;
-  //     });
-  //   }
-  //   return _todoList;
-  // }
 
   Future<void> _loadUserTodos() async {
     setState(() {
