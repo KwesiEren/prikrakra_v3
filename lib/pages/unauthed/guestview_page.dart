@@ -159,7 +159,7 @@ class _GuestviewPageState extends State<GuestviewPage> {
                 ),
                 ListTile(
                   onTap: () {
-                    Navigator.pushNamed(context, '/edwin');
+                    Navigator.pushNamed(context, '/tNc');
                   },
                   title: ButnTyp2(
                       text: 'Terms and Conditions',

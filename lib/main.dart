@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:prikrakra_v3/pages/edit_user_page.dart';
+import 'package:prikrakra_v3/pages/tNc_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'pages/statistics_page.dart';
@@ -46,6 +48,8 @@ class MyApp extends StatelessWidget {
       '/signup': (context) => const SignUp(),
       '/statistics': (context) => const StatisticsPage(),
       '/edwin': (context) => const SurveyPage(),
+      '/edit_details': (context) => const EditUserPage(),
+      '/tNc': (context) => const TermsAndCondPage(),
     });
   }
 }

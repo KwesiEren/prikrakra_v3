@@ -256,7 +256,9 @@ class _WorkAreaState extends State<WorkArea> {
                   ),
                   if (isLoggedIn)
                     ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(context, '/edit_details');
+                      },
                       title: ButnTyp2(
                           text: 'Edit User Information',
                           size: 20,
@@ -281,7 +283,7 @@ class _WorkAreaState extends State<WorkArea> {
                   ),
                   ListTile(
                     onTap: () {
-                      Navigator.pushNamed(context, '/edwin');
+                      Navigator.pushNamed(context, '/tNc');
                     },
                     title: ButnTyp2(
                         text: 'Terms and Conditions',
