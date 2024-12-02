@@ -32,9 +32,9 @@ class SBAuth {
         throw response.error!;
       }
 
-      print("User signed up successfully");
+      debugPrint("User signed up successfully");
     } catch (e) {
-      print("Sign-up Error: $e");
+      debugPrint("Sign-up Error: $e");
       // Optionally, return an error message for the UI
     }
   }
@@ -48,6 +48,10 @@ class SBAuth {
           .select('password, user')
           .eq('email', email)
           .single();
+
+      if (resp.isEmpty) {
+        return 'Stopped';
+      }
 
       final encryptedPassword = resp['password'];
       debugPrint('entered password: $password');
@@ -66,8 +70,8 @@ class SBAuth {
       await SharedPreferencesHelper.saveUsername(storeUser); // Use the helper
       return "Login successful";
     } catch (e) {
-      print("Login Error: $e");
-      return "Sorry No Connection";
+      debugPrint("Login Error: $e");
+      return "Try Again please";
     }
   }
 
@@ -75,7 +79,7 @@ class SBAuth {
   Future<void> logout() async {
     // Clear login session using the helper
     await SharedPreferencesHelper.clearUserSession();
-    print('user logged out');
+    debugPrint('user logged out');
   }
 
   Future<bool> isLoggedIn() async {

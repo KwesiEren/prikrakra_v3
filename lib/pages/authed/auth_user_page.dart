@@ -20,10 +20,11 @@ class OnlyUserTask extends StatefulWidget {
 class _OnlyUserTaskState extends State<OnlyUserTask> {
   Timer? _timer;
   List<Todo?> _todoList = [];
-  bool _isOnline = true;
+  final bool _isOnline = true;
   bool isLoading = true;
   final _auth = SBAuth();
 
+  @override
   void initState() {
     super.initState();
 

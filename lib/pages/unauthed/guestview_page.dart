@@ -39,16 +39,22 @@ class _GuestviewPageState extends State<GuestviewPage> {
     });
   }
 
-  void _toggleTaskStatus(int index) async {
-    final updatedStatus = !_guestTask[index]!.status;
+  void _toggleTodoStatus(int index) async {
+    // Fetch the current list of todos
+    List<Task> todos = await SharedPreferencesHelper.getTodoList();
+
+    // Get the selected task
+    Task task = todos[index];
+
+    // Toggle the status
+    bool newStatus = !task.status;
+
+    // Update the status in SharedPreferences
+    await SharedPreferencesHelper.updateTodoStatus(task.id, newStatus);
+
     setState(() {
-      _guestTask[index]!.status = updatedStatus;
+      _loadTodos();
     });
-    final updatedTodo = _guestTask[index];
-
-    await SharedPreferencesHelper.updateTodo(updatedTodo!);
-
-    _loadTodos();
   }
 
   // Method to delete a todo
@@ -237,7 +243,7 @@ class _GuestviewPageState extends State<GuestviewPage> {
                             title: GuestTask(
                               taskName: _guestTask[index]!.title,
                               taskCompleted: _guestTask[index]!.status,
-                              onChanged: (value) => _toggleTaskStatus(index),
+                              onChanged: (value) => _toggleTodoStatus(index),
                               taskDetail: _guestTask[index]!.details,
                             ),
                             trailing: IconButton(
