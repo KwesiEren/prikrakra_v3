@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:prikrakra_v3/utils/shared_preferences_helper.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../components/button2.dart';
@@ -16,7 +17,7 @@ import 'formpage.dart';
 
 class WorkArea extends StatefulWidget {
   String userName;
-  final String userEmail;
+  String userEmail;
   WorkArea({required this.userEmail, super.key, required this.userName});
 
   @override
@@ -44,8 +45,9 @@ class _WorkAreaState extends State<WorkArea> {
   void initState() {
     super.initState();
     _initializeInternetChecker(); //Check internet status on init
-    _checkLoginStatus(); // Check Login status
-    _checkUserInDatabase(); // Call user email on init
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      _runPeriodicFunction();
+    });
   }
 
   //Check if app is Connected to the Internet
@@ -65,6 +67,13 @@ class _WorkAreaState extends State<WorkArea> {
     });
   }
 
+  void _runPeriodicFunction() async {
+    // Place your logic here
+    await _checkLoginStatus();
+    await _checkUserInDatabase();
+    debugPrint('User logged in at that instance');
+  }
+
   // Check if the user is in the database on app startup
   Future<void> _checkUserInDatabase() async {
     final response = await Supabase.instance.client
@@ -82,8 +91,12 @@ class _WorkAreaState extends State<WorkArea> {
   Future<void> _checkLoginStatus() async {
     // Replace this with your actual login status check
     final isSignedIn = await _auth.getLoggedInUserName() != null;
+    final checkUserEmail = await SharedPreferencesHelper.getUserEmail();
+    final checkUserName = await SharedPreferencesHelper.getUsername();
     setState(() {
       isLoggedIn = isSignedIn;
+      widget.userEmail = checkUserEmail!;
+      widget.userName = checkUserName!;
     });
   }
 
@@ -212,16 +225,19 @@ class _WorkAreaState extends State<WorkArea> {
                           height: 10,
                         ),
                         const CircleAvatar(
-                          backgroundImage: AssetImage('assets/bg2.jpg'),
-                          radius: 80,
+                          backgroundColor: Color.fromRGBO(96, 139, 193, 100),
+                          radius: 85,
+                          child: CircleAvatar(
+                            backgroundImage: AssetImage('assets/bg2.jpg'),
+                            radius: 80,
+                          ),
                         ),
                         const SizedBox(
                           height: 20,
                         ),
                         Text(
-                          isUserInDatabase
-                              ? widget.userName
-                              : 'Guest User', //Display current logged in user email here.
+                          widget
+                              .userName, //Display current logged in user email here.
                           style: const TextStyle(
                             fontSize: 20,
                           ),

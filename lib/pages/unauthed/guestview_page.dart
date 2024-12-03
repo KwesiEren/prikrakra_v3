@@ -120,8 +120,12 @@ class _GuestviewPageState extends State<GuestviewPage> {
                         height: 10,
                       ),
                       CircleAvatar(
-                        backgroundImage: AssetImage('assets/bg2.jpg'),
-                        radius: 80,
+                        backgroundColor: Color.fromRGBO(96, 139, 193, 100),
+                        radius: 85,
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage('assets/bg2.jpg'),
+                          radius: 80,
+                        ),
                       ),
                       SizedBox(
                         height: 20,

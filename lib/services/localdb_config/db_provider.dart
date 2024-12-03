@@ -110,6 +110,23 @@ class AppDB {
     );
   }
 
+  // Update user parameter of Todo Method
+  Future<int> updateUsernameForTasks(
+      String oldUsername, String newUsername) async {
+    final db = await instance.mydatabase;
+
+    // Update all tasks where user matches oldUsername
+    final result = await db.update(
+      tableName,
+      {userFN: newUsername},
+      where: '$userFN = ?',
+      whereArgs: [oldUsername],
+    );
+
+    print("Updated $result tasks from $oldUsername to $newUsername.");
+    return result; // Return the number of rows affected
+  }
+
   // Update Todo Method
   Future<int> updateTodo(Todo todo) async {
     // Update element in table by ID

@@ -150,12 +150,12 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
               ),
               const SizedBox(height: 10),
               TextFormField(
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'User',
-                  hintText: 'Default Username will be used if empty.',
+                  hintText: widget.userName,
                 ),
                 onSaved: (value) {
-                  _user = value ?? widget.userName;
+                  _user = widget.userName;
                 },
               ),
               const SizedBox(height: 10),
