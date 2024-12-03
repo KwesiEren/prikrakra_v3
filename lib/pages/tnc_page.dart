@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class TermsAndCondPage extends StatefulWidget {
   const TermsAndCondPage({super.key});
@@ -17,6 +18,9 @@ class _TermsAndCondPageState extends State<TermsAndCondPage> {
         backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
         foregroundColor: Colors.white,
       ),
+      body: SfPdfViewer.asset(
+           'assets/terms_conditions.pdf',
+          ),
     );
   }
 }

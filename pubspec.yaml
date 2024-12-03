@@ -45,6 +45,7 @@ dependencies:
   uuid:
   flutter_styled_toast:
   xor_encryption: ^0.0.5
+  syncfusion_flutter_pdfviewer: ^27.2.5
 
 
 
