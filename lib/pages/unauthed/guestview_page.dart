@@ -20,11 +20,12 @@ class GuestviewPage extends StatefulWidget {
 class _GuestviewPageState extends State<GuestviewPage> {
   List<Task?> _guestTask = [];
   DateTime? _lastPressedAt;
+  bool isLoading = true;
 
   @override
   void initState() {
-    super.initState();
     _loadTodos(); // Load todos when the screen initializes
+    super.initState();
   }
 
   Future<void> _opensession() async {
@@ -36,6 +37,7 @@ class _GuestviewPageState extends State<GuestviewPage> {
     List<Task> todos = await SharedPreferencesHelper.getTodoList();
     setState(() {
       _guestTask = todos;
+      isLoading = false;
     });
   }
 
@@ -197,72 +199,94 @@ class _GuestviewPageState extends State<GuestviewPage> {
         //Body Codes Begin Here
         body: SafeArea(
           child: Container(
-              width: screen.width,
-              decoration:
-                  //Background Image block:
-                  const BoxDecoration(color: Color.fromRGBO(243, 243, 224, 1)
-                      // image: DecorationImage(
-                      //     fit: BoxFit.cover, image: AssetImage('assets/bg3.jpg')),
-                      ),
-              child: ListView.builder(
-                  itemCount: _guestTask.length,
-                  physics: const BouncingScrollPhysics(),
-                  itemBuilder: (BuildContext context, index) {
-                    return Card(
-                      margin:
-                          const EdgeInsets.only(top: 10, left: 10, right: 10),
-                      child: GestureDetector(
-                        onLongPress: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => EditGuestTodoScreen(
-                                todo: _guestTask[index],
-                                onTodoUpdated: (updatedTodo) {
-                                  setState(() {
-                                    // Update the todo in the local UI list
-                                    final index = _guestTask.indexWhere(
-                                        (todo) => todo!.id == updatedTodo.id);
-                                    if (index != -1) {
-                                      _guestTask[index] = updatedTodo;
-                                    }
-                                  });
-                                },
-                              ),
+            width: screen.width,
+            decoration:
+                //Background Image block:
+                const BoxDecoration(color: Color.fromRGBO(243, 243, 224, 1)),
+            child: Center(
+              child: RefreshIndicator(
+                onRefresh: _loadTodos,
+                child: isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : _guestTask.isEmpty
+                        ? const Text(
+                            'The list is empty!',
+                            style: TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color: const Color.fromRGBO(96, 139, 193, 100),
                             ),
-                          );
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: const Color.fromRGBO(203, 220, 235, 1),
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: const [
-                                BoxShadow(
-                                  color: Colors.black26,
-                                  offset: Offset(0, 3),
-                                  blurRadius: 6,
-                                )
-                              ]),
-                          child: ListTile(
-                            // Edit Card contents here:
-                            title: GuestTask(
-                              taskName: _guestTask[index]!.title,
-                              taskCompleted: _guestTask[index]!.status,
-                              onChanged: (value) => _toggleTodoStatus(index),
-                              taskDetail: _guestTask[index]!.details,
-                            ),
-                            trailing: IconButton(
-                              onPressed: () =>
-                                  _deleteTodo(_guestTask[index]!.id),
-                              icon: const Icon(
-                                Icons.delete,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    );
-                  })),
+                          )
+                        : ListView.builder(
+                            itemCount: _guestTask.length,
+                            physics: const BouncingScrollPhysics(),
+                            itemBuilder: (BuildContext context, index) {
+                              return Card(
+                                margin: const EdgeInsets.only(
+                                    top: 10, left: 10, right: 10),
+                                child: GestureDetector(
+                                  onLongPress: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            EditGuestTodoScreen(
+                                          todo: _guestTask[index],
+                                          onTodoUpdated: (updatedTodo) {
+                                            setState(() {
+                                              // Update the todo in the local UI list
+                                              final index = _guestTask
+                                                  .indexWhere((todo) =>
+                                                      todo!.id ==
+                                                      updatedTodo.id);
+                                              if (index != -1) {
+                                                _guestTask[index] = updatedTodo;
+                                              }
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: const Color.fromRGBO(
+                                            203, 220, 235, 1),
+                                        borderRadius: BorderRadius.circular(10),
+                                        boxShadow: const [
+                                          BoxShadow(
+                                            color: Colors.black26,
+                                            offset: Offset(0, 3),
+                                            blurRadius: 6,
+                                          )
+                                        ]),
+                                    child: ListTile(
+                                      // Edit Card contents here:
+                                      title: GuestTask(
+                                        taskName: _guestTask[index]!.title,
+                                        taskCompleted:
+                                            _guestTask[index]!.status,
+                                        onChanged: (value) =>
+                                            _toggleTodoStatus(index),
+                                        taskDetail: _guestTask[index]!.details,
+                                      ),
+                                      trailing: IconButton(
+                                        onPressed: () =>
+                                            _deleteTodo(_guestTask[index]!.id),
+                                        icon: const Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            }),
+              ),
+            ),
+          ),
         ),
         //BODY ENDS HERE
 

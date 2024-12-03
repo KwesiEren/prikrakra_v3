@@ -19,8 +19,8 @@ class _TermsAndCondPageState extends State<TermsAndCondPage> {
         foregroundColor: Colors.white,
       ),
       body: SfPdfViewer.asset(
-           'assets/terms_conditions.pdf',
-          ),
+        "assets/terms_conditions.pdf", // Path to the PDF file
+      ),
     );
   }
 }

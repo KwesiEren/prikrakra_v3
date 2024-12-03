@@ -69,6 +69,11 @@ class _SignUpState extends State<SignUp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  SizedBox(
+                    // color: Colors.red,
+                    width: screen.width,
+                    height: screen.height * 0.4,
+                  ),
                   const Padding(
                     padding: EdgeInsets.only(left: 30),
                     child: Row(
@@ -89,7 +94,7 @@ class _SignUpState extends State<SignUp> {
                     height: 5,
                   ),
                   GlassBox(
-                    height: screen.height * 0.00085,
+                    height: screen.height * 0.00055,
                     child: Container(
                       padding: const EdgeInsets.only(left: 45, right: 45),
                       child: Column(

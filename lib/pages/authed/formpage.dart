@@ -45,7 +45,7 @@ class _AddTodoScreenState extends State<AddTodoScreen> {
     showToast(
       message,
       context: context,
-      backgroundColor: Colors.greenAccent,
+      backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
     );
   }
 

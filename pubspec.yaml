@@ -46,6 +46,7 @@ dependencies:
   flutter_styled_toast:
   xor_encryption: ^0.0.5
   syncfusion_flutter_pdfviewer: ^27.2.5
+  
 
 
 
@@ -75,7 +76,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
      - assets/
-  #   - images/a_dot_ham.jpeg
+     - assets/terms_conditions.pdf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

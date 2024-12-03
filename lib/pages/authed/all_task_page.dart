@@ -17,14 +17,15 @@ class AllTask extends StatefulWidget {
 
 class _AllTaskState extends State<AllTask> {
   Timer? _timer;
-  List<Todo?> _todoList = [];
+  final dbConfig = SupaDB();
+  List<Todo?> _alltodoList = [];
 
   bool isLoading = true;
 
   void initState() {
     super.initState();
 
-    _loadLocalTodos(); // Call all local database task on init
+    _loadAllTodos(); // Call all local database task on init
 
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       _runPeriodicFunction();
@@ -33,35 +34,16 @@ class _AllTaskState extends State<AllTask> {
 
   void _runPeriodicFunction() async {
     // Place your logic here
-    await _fetchMissingTodosFromSupabase();
-    await _syncLocalTodosToSupabase();
+    await _loadAllTodos();
     debugPrint('Sync is running every 30 seconds');
   }
 
   //Fetch all todos from local database
-  Future<List> _loadLocalTodos() async {
+  Future<List> _loadAllTodos() async {
     setState(() {
       isLoading = true;
     });
-    try {
-      final todos = await AppDB.instance.getAllTodo();
-      setState(() {
-        _todoList = todos.map((todo) {
-          todo?.isSynced = false; // Mark as unsynced when loaded
-          return todo;
-        }).toList();
-        isLoading = false;
-      });
-    } catch (e) {
-      setState(() {
-        isLoading = false;
-      });
-    }
-    return _todoList;
-  }
 
-  //Fetch missing todos from Supabase:
-  Future<void> _fetchMissingTodosFromSupabase() async {
     final response = await SupaDB.getAllSB();
 
     // Verify if response is in List<Map<String, dynamic>> format or List<Todo>
@@ -70,74 +52,21 @@ class _AllTaskState extends State<AllTask> {
       final supabaseTodos = response
           .map((json) => Todo.fromJson(json as Map<String, dynamic>))
           .toList();
-
-      // Compare and find missing todos
-      final localTodos = await AppDB.instance.getAllTodo();
-      final missingTodos = supabaseTodos.where((supabaseTodo) {
-        return !localTodos.any((localTodo) => localTodo!.id == supabaseTodo.id);
-      }).toList();
-
-      // Add missing todos to the local database
-      for (var task in missingTodos) {
-        await AppDB.instance.addTodo(task as Todo);
-      }
+      setState(() {
+        _alltodoList = supabaseTodos;
+      });
     } else if (response is List<Todo>) {
       // If response is already a list of Todo objects, use it directly
       final supabaseTodos = response;
-
-      final localTodos = await AppDB.instance.getAllTodo();
-      final missingTodos = supabaseTodos.where((supabaseTodo) {
-        return !localTodos.any((localTodo) => localTodo!.id == supabaseTodo.id);
-      }).toList();
-
-      for (var todo in missingTodos) {
-        await AppDB.instance.addTodo(todo);
-      }
+      setState(() {
+        _alltodoList = supabaseTodos;
+        isLoading = false;
+      });
     } else {
       throw Exception("Unexpected response format from Supabase");
     }
 
-    debugPrint("Missing todos have been successfully pulled from Supabase.");
-
-    // Refresh the UI with the latest todos
-    setState(() {
-      _loadLocalTodos();
-    });
-  }
-
-  // Sync local Todos to the Online database
-  Future<void> _syncLocalTodosToSupabase() async {
-    final unsyncedTodos = _todoList.where((todo) => !todo!.isSynced).toList();
-
-    if (unsyncedTodos.isEmpty) {
-      debugPrint("No unsynced todos to upload.");
-      return;
-    }
-
-    // Prepare data for upsert with isSynced set to true for Supabase
-    final upsertData = unsyncedTodos.map((todo) {
-      final json = todo!.toJson();
-      json['isSynced'] = true; // Set isSynced to true for Supabase
-      return json;
-    }).toList();
-
-    final response =
-        await Supabase.instance.client.from('todoTable').upsert(upsertData);
-
-    if (response.error != null) {
-      debugPrint("Failed to sync todos: ${response.error!.message}");
-    } else {
-      // Mark todos as synced in the local database
-      for (var todo in unsyncedTodos) {
-        todo!.isSynced = true;
-        await AppDB.instance.updateTodoSyncStatus(todo.id!, true);
-      }
-      debugPrint("Successfully synced todos.");
-    }
-
-    setState(() {
-      _loadLocalTodos(); // Refresh local todos list after syncing
-    });
+    return _alltodoList;
   }
 
   @override
@@ -148,15 +77,14 @@ class _AllTaskState extends State<AllTask> {
 
   @override
   Widget build(BuildContext context) {
-    var screen = MediaQuery.of(context).size;
     return Center(
       child: RefreshIndicator(
-        onRefresh: _syncLocalTodosToSupabase,
+        onRefresh: _loadAllTodos,
         child: isLoading
             ? const Center(
                 child: CircularProgressIndicator(),
               )
-            : _todoList.isEmpty
+            : _alltodoList.isEmpty
                 ? const Text(
                     'The list is empty!',
                     style: TextStyle(
@@ -166,7 +94,7 @@ class _AllTaskState extends State<AllTask> {
                     ),
                   )
                 : ListView.builder(
-                    itemCount: _todoList.length,
+                    itemCount: _alltodoList.length,
                     physics: const BouncingScrollPhysics(),
                     itemBuilder: (BuildContext context, index) {
                       return Card(
@@ -187,10 +115,10 @@ class _AllTaskState extends State<AllTask> {
                           child: ListTile(
                             // Edit Card contents here:
                             title: ViewTask(
-                              taskName: _todoList[index]!.title,
-                              taskDetail: _todoList[index]!.details,
+                              taskName: _alltodoList[index]!.title,
+                              taskDetail: _alltodoList[index]!.details,
                             ),
-                            subtitle: Text(_todoList[index]!.user),
+                            subtitle: Text(_alltodoList[index]!.user),
                           ),
                         ),
                       );
