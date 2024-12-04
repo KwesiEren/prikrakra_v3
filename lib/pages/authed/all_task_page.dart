@@ -27,7 +27,7 @@ class _AllTaskState extends State<AllTask> {
 
     _loadAllTodos(); // Call all local database task on init
 
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 120), (timer) {
       _runPeriodicFunction();
     });
   }

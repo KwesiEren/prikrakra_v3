@@ -128,169 +128,171 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     var screen = MediaQuery.of(context).size;
     return Scaffold(
-      body: Container(
-        width: screen.width,
-        height: screen.height,
-        decoration:
-            //Background Image here:
-            const BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/bg4.jpeg'),
-            fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Container(
+          width: screen.width,
+          height: screen.height,
+          decoration:
+              //Background Image here:
+              const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/bg4.jpeg'),
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SizedBox(
-                // color: Colors.red,
-                width: screen.width,
-                height: screen.height * 0.4,
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 30),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Hi!',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w900,
-                        color: Color.fromRGBO(19, 62, 135, 1),
-                      ),
-                    ),
-                  ],
+          child: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(
+                  // color: Colors.red,
+                  width: screen.width,
+                  height: screen.height * 0.4,
                 ),
-              ),
-              const SizedBox(height: 10),
-              GlassBox(
-                height: screen.height * 0.00055,
-                child: Container(
-                  padding: const EdgeInsets.only(left: 45, right: 45),
-                  child: Column(
+                const Padding(
+                  padding: EdgeInsets.only(left: 30),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(height: 30),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          InputField(
-                            displaytxt: 'Email',
-                            hidetxt: false,
-                            borderRadius: 20,
-                            contrlr: _emailInput,
-                          ),
-                          const SizedBox(height: 20),
-                          InputField(
-                            displaytxt: 'Password',
-                            hidetxt: true,
-                            borderRadius: 20,
-                            contrlr: _passwordInput,
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      GestureDetector(
-                        onTap: loginAct,
-                        child: ButnTyp1(
-                          text: 'LOGIN',
-                          size: 15,
-                          btnColor: const Color.fromRGBO(19, 62, 135, 1),
-                          borderRadius: 5,
-                        ),
-                      ),
-                      const Text(
-                        'or',
+                      Text(
+                        'Hi!',
                         style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          fontSize: 15,
-                          color: Color.fromRGBO(96, 139, 193, 1),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 50, right: 50),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            GestureDetector(
-                              onTap: () {},
-                              child: Container(
-                                width: screen.width * 0.18,
-                                height: screen.height * 0.08,
-                                decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(228, 255, 255, 255),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Container(
-                                  margin: const EdgeInsets.all(5),
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                      fit: BoxFit.contain,
-                                      image: AssetImage('assets/google.png'),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: ButnTile(
-                                icnName: 'assets/twitter.png',
-                                margin: 10,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            'Don\'t have an account? ',
-                            style: TextStyle(
-                              color: Color.fromRGBO(96, 139, 193, 1),
-                              fontSize: 15,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/signup');
-                            },
-                            child: const Text(
-                              'Sign Up',
-                              style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                decorationColor:
-                                    Color.fromRGBO(96, 139, 193, 1),
-                                color: Color.fromRGBO(96, 139, 193, 1),
-                                fontSize: 15,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 20),
-                      GestureDetector(
-                        onTap: () {},
-                        child: const Text(
-                          'Forgot Password?',
-                          style: TextStyle(
-                            decoration: TextDecoration.underline,
-                            decorationColor: Color.fromRGBO(96, 139, 193, 1),
-                            color: Color.fromRGBO(96, 139, 193, 1),
-                            fontSize: 15,
-                          ),
+                          fontSize: 30,
+                          fontWeight: FontWeight.w900,
+                          color: Color.fromRGBO(19, 62, 135, 1),
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 10),
+                GlassBox(
+                  height: screen.height * 0.00055,
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 45, right: 45),
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 30),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            InputField(
+                              displaytxt: 'Email',
+                              hidetxt: false,
+                              borderRadius: 20,
+                              contrlr: _emailInput,
+                            ),
+                            const SizedBox(height: 20),
+                            InputField(
+                              displaytxt: 'Password',
+                              hidetxt: true,
+                              borderRadius: 20,
+                              contrlr: _passwordInput,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: loginAct,
+                          child: ButnTyp1(
+                            text: 'LOGIN',
+                            size: 15,
+                            btnColor: const Color.fromRGBO(19, 62, 135, 1),
+                            borderRadius: 5,
+                          ),
+                        ),
+                        const Text(
+                          'or',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w300,
+                            fontSize: 15,
+                            color: Color.fromRGBO(96, 139, 193, 1),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 50, right: 50),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () {},
+                                child: Container(
+                                  width: screen.width * 0.18,
+                                  height: screen.height * 0.08,
+                                  decoration: BoxDecoration(
+                                    color: const Color.fromARGB(
+                                        228, 255, 255, 255),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Container(
+                                    margin: const EdgeInsets.all(5),
+                                    decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                        fit: BoxFit.contain,
+                                        image: AssetImage('assets/google.png'),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {},
+                                child: ButnTile(
+                                  icnName: 'assets/twitter.png',
+                                  margin: 10,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Text(
+                              'Don\'t have an account? ',
+                              style: TextStyle(
+                                color: Color.fromRGBO(96, 139, 193, 1),
+                                fontSize: 15,
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/signup');
+                              },
+                              child: const Text(
+                                'Sign Up',
+                                style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  decorationColor:
+                                      Color.fromRGBO(96, 139, 193, 1),
+                                  color: Color.fromRGBO(96, 139, 193, 1),
+                                  fontSize: 15,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        GestureDetector(
+                          onTap: () {},
+                          child: const Text(
+                            'Forgot Password?',
+                            style: TextStyle(
+                              decoration: TextDecoration.underline,
+                              decorationColor: Color.fromRGBO(96, 139, 193, 1),
+                              color: Color.fromRGBO(96, 139, 193, 1),
+                              fontSize: 15,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

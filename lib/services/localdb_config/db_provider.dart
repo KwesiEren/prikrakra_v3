@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -46,7 +47,7 @@ class AppDB {
       version: 1,
       onCreate: _create,
       onOpen: (db) {
-        print("Database opened at: $path");
+        debugPrint("Database opened at: $path");
       },
       singleInstance: true,
     );
@@ -60,7 +61,7 @@ class AppDB {
     final db = await instance.mydatabase;
     await db.insert(tableName, todo.toJson());
 
-    print("Inserted Todo with ID: ${todo.id}");
+    debugPrint("Inserted Todo with ID: ${todo.id}");
 
     return todo;
   }
@@ -123,7 +124,7 @@ class AppDB {
       whereArgs: [oldUsername],
     );
 
-    print("Updated $result tasks from $oldUsername to $newUsername.");
+    debugPrint("Updated $result tasks from $oldUsername to $newUsername.");
     return result; // Return the number of rows affected
   }
 
@@ -137,7 +138,7 @@ class AppDB {
       where: '$idFN = ?',
       whereArgs: [todo.id],
     );
-    print("Updated Todo with ID: ${todo.id}, Rows affected: $result");
+    debugPrint("Updated Todo with ID: ${todo.id}, Rows affected: $result");
     return result;
   }
 
@@ -150,7 +151,7 @@ class AppDB {
       where: '$idFN = ?',
       whereArgs: [id],
     );
-    print("Deleted Todo with ID: $id, Rows affected: $result");
+    debugPrint("Deleted Todo with ID: $id, Rows affected: $result");
     return result;
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../components/button.dart';
 import '../../models/task.dart';
 import '../../models/task_type.dart';
 import '../../services/localdb_config/db_provider.dart';
@@ -120,12 +121,13 @@ class _EditTodoScreenState extends State<EditTodoScreen> {
                   });
                 },
               ),
-              ElevatedButton(
-                onPressed: () {
-                  _submitForm();
-                },
-                child: const Text('Save Edits'),
-              ),
+              GestureDetector(
+                  onTap: _submitForm,
+                  child: ButnTyp1(
+                      text: 'Save Changes',
+                      size: 20,
+                      btnColor: const Color.fromRGBO(19, 62, 135, 1),
+                      borderRadius: 5))
             ],
           ),
         ),

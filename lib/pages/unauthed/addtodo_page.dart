@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../components/button.dart';
 import '../../models/gtask.dart';
 import '../../utils/shared_preferences_helper.dart';
 
@@ -66,6 +67,7 @@ class _AddGuestTodoScreenState extends State<AddGuestTodoScreen> {
   // UI code block here:
   @override
   Widget build(BuildContext context) {
+    var screen = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add Todo'),
@@ -73,38 +75,50 @@ class _AddGuestTodoScreenState extends State<AddGuestTodoScreen> {
         backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
         foregroundColor: Colors.white,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: ListView(
-            children: [
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Title'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a title';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _title = value!;
-                },
-              ),
-              const SizedBox(height: 5),
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Details'),
-                maxLines: 4,
-                onSaved: (value) {
-                  _details = value;
-                },
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: _submitForm,
-                child: const Text('Add Todo'),
-              ),
-            ],
+      body: Container(
+        width: screen.width,
+        decoration:
+            //Background Image block:
+            const BoxDecoration(color: Color.fromRGBO(243, 243, 224, 1)
+                // image: DecorationImage(
+                //     fit: BoxFit.cover, image: AssetImage('assets/bg3.jpg')),
+                ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              children: [
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Title'),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a title';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _title = value!;
+                  },
+                ),
+                const SizedBox(height: 5),
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Details'),
+                  maxLines: 4,
+                  onSaved: (value) {
+                    _details = value;
+                  },
+                ),
+                const SizedBox(height: 10),
+                GestureDetector(
+                    onTap: _submitForm,
+                    child: ButnTyp1(
+                        text: 'Add Todo',
+                        size: 20,
+                        btnColor: const Color.fromRGBO(19, 62, 135, 1),
+                        borderRadius: 5))
+              ],
+            ),
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../components/button.dart';
 import '../../models/gtask.dart';
 import '../../utils/shared_preferences_helper.dart';
 
@@ -33,29 +34,6 @@ class _EditGuestTodoScreenState extends State<EditGuestTodoScreen> {
     _status = widget.todo!.status;
   }
 
-  // void updateExistingTodo() async {
-  //   // Create an updated todo object (with the same id as the existing one)
-  //   Task updatedTodo = Task(
-  //     id: widget.todo!.id,
-  //     title: widget.todo!.title,
-  //     details: widget.todo!.details,
-  //     status: widget.todo!.status,
-  //   );
-  //
-  //   // Call the update method
-  //   await SharedPreferencesHelper.updateTodo(updatedTodo);
-  //
-  //   // Optional: Retrieve the updated list to verify changes
-  //   List<Task> todos = await SharedPreferencesHelper.getTodoList();
-  //   todos.forEach((todo) {
-  //     print('${todo.id}: ${todo.title} - ${todo.details}');
-  //   });
-  //
-  //   debugPrint('done with update');
-  //
-  //   widget.onTodoUpdated(updatedTodo);
-  // }
-
   // Function to handle all update request for local and online database
   void _submitForm() async {
     if (_formKey.currentState!.validate()) {
@@ -80,6 +58,7 @@ class _EditGuestTodoScreenState extends State<EditGuestTodoScreen> {
   //UI codes here:
   @override
   Widget build(BuildContext context) {
+    var screen = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Todo'),
@@ -87,39 +66,49 @@ class _EditGuestTodoScreenState extends State<EditGuestTodoScreen> {
         backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
         foregroundColor: Colors.white,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                initialValue: _title,
-                decoration: const InputDecoration(labelText: 'Title'),
-                onSaved: (value) => _title = value!,
-                validator: (value) => value!.isEmpty ? 'Enter a title' : null,
-              ),
-              TextFormField(
-                initialValue: _details,
-                decoration: const InputDecoration(labelText: 'Details'),
-                onSaved: (value) => _details = value,
-              ),
-              SwitchListTile(
-                title: const Text('Status'),
-                value: _status,
-                onChanged: (value) {
-                  setState(() {
-                    _status = value;
-                  });
-                },
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  _submitForm();
-                },
-                child: const Text('Update Todo'),
-              ),
-            ],
+      body: Container(
+        width: screen.width,
+        decoration:
+            //Background Image block:
+            const BoxDecoration(color: Color.fromRGBO(243, 243, 224, 1)
+                // image: DecorationImage(
+                //     fit: BoxFit.cover, image: AssetImage('assets/bg3.jpg')),
+                ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  initialValue: _title,
+                  decoration: const InputDecoration(labelText: 'Title'),
+                  onSaved: (value) => _title = value!,
+                  validator: (value) => value!.isEmpty ? 'Enter a title' : null,
+                ),
+                TextFormField(
+                  initialValue: _details,
+                  decoration: const InputDecoration(labelText: 'Details'),
+                  onSaved: (value) => _details = value,
+                ),
+                SwitchListTile(
+                  title: const Text('Status'),
+                  value: _status,
+                  onChanged: (value) {
+                    setState(() {
+                      _status = value;
+                    });
+                  },
+                ),
+                GestureDetector(
+                    onTap: _submitForm,
+                    child: ButnTyp1(
+                        text: 'Save Changes',
+                        size: 20,
+                        btnColor: const Color.fromRGBO(19, 62, 135, 1),
+                        borderRadius: 5))
+              ],
+            ),
           ),
         ),
       ),
