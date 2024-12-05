@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
+import 'package:prikrakra_v3/pages/colors.dart';
+import 'package:prikrakra_v3/theme_control.dart';
 import 'package:prikrakra_v3/utils/shared_preferences_helper.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -193,27 +195,28 @@ class _WorkAreaState extends State<WorkArea> {
                 indicator: const UnderlineTabIndicator(),
                 automaticIndicatorColorAdjustment: false,
                 tabs: [
-                  const Tab(
+                  Tab(
                       child: Text(
                     'My Todo',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: ThemeCtrl.colors.colorw),
                   )),
                   if (isLoggedIn)
-                    const Tab(
+                    Tab(
                       child: Text(
                         'All Tasks',
-                        style: TextStyle(color: Colors.white),
+                        style: TextStyle(color: ThemeCtrl.colors.colorw),
                       ),
                     )
                 ]),
             centerTitle: true,
-            backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
+            backgroundColor: ThemeCtrl.colors.colorbg,
             foregroundColor: Colors.white,
           ),
 
           //Codes for Drawer begin here
           endDrawer: SafeArea(
             child: Drawer(
+              backgroundColor: ThemeCtrl.colors.colorbg,
               child: ListView(
                 children: [
                   Container(
@@ -270,56 +273,66 @@ class _WorkAreaState extends State<WorkArea> {
                   const SizedBox(
                     height: 10,
                   ),
-                  if (isLoggedIn)
-                    ListTile(
-                      onTap: () {
-                        Navigator.pushNamed(context, '/edit_details');
-                      },
-                      title: ButnTyp2(
-                          text: 'Edit User Information',
-                          size: 20,
-                          btnColor: const Color.fromRGBO(19, 62, 135, 10),
-                          borderRadius: 5),
-                    ),
-                  const SizedBox(
-                    height: 20,
+                  Column(
+                    // crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Column(
+                        children: [
+                          if (isLoggedIn)
+                            ListTile(
+                              onTap: () {
+                                Navigator.pushNamed(context, '/edit_details');
+                              },
+                              title: ButnTyp2(
+                                  text: 'Edit User Information',
+                                  size: 20,
+                                  btnColor: ThemeCtrl.colors.color1,
+                                  borderRadius: 5),
+                            ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          ListTile(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/statistics');
+                            },
+                            title: ButnTyp2(
+                                text: 'Statistics',
+                                size: 20,
+                                btnColor: ThemeCtrl.colors.color1,
+                                borderRadius: 5),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          ListTile(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/tNc');
+                            },
+                            title: ButnTyp2(
+                                text: 'Terms and Conditions',
+                                size: 20,
+                                btnColor: ThemeCtrl.colors.color1,
+                                borderRadius: 5),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: screen.height * 0.1,
+                      ),
+                      ListTile(
+                        onTap: () {
+                          _closesession();
+                        },
+                        title: ButnTyp3(
+                            text: 'Log out',
+                            size: 20,
+                            btnColor: ThemeCtrl.colors.colorbtn1,
+                            borderRadius: 5),
+                      ),
+                    ],
                   ),
-                  ListTile(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/statistics');
-                    },
-                    title: ButnTyp2(
-                        text: 'Statistics',
-                        size: 20,
-                        btnColor: const Color.fromRGBO(19, 62, 135, 10),
-                        borderRadius: 5),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  ListTile(
-                    onTap: () {
-                      Navigator.pushNamed(context, '/tNc');
-                    },
-                    title: ButnTyp2(
-                        text: 'Terms and Conditions',
-                        size: 20,
-                        btnColor: const Color.fromRGBO(19, 62, 135, 10),
-                        borderRadius: 5),
-                  ),
-                  const SizedBox(
-                    height: 60,
-                  ),
-                  ListTile(
-                    onTap: () {
-                      _closesession();
-                    },
-                    title: ButnTyp3(
-                        text: 'Log out',
-                        size: 20,
-                        btnColor: Colors.redAccent,
-                        borderRadius: 5),
-                  ),
+
                   // Container(
                   //   color: Colors.greenAccent,
                   //   height: screen.height * 0.03,
@@ -336,8 +349,7 @@ class _WorkAreaState extends State<WorkArea> {
                   width: screen.width,
                   decoration:
                       //Background Image block:
-                      const BoxDecoration(
-                          color: Color.fromRGBO(243, 243, 224, 1)
+                      BoxDecoration(color: ThemeCtrl.colors.colorbg
                           // image: DecorationImage(
                           //     fit: BoxFit.cover, image: AssetImage('assets/bg3.jpg')),
                           ),
@@ -348,8 +360,8 @@ class _WorkAreaState extends State<WorkArea> {
           //BODY ENDS HERE
 
           floatingActionButton: FloatingActionButton(
-            backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
-            foregroundColor: Colors.white,
+            backgroundColor: ThemeCtrl.colors.color1,
+            foregroundColor: ThemeCtrl.colors.colorw,
             hoverColor: Colors.white70,
             onPressed: _navigateToAddTodoForm,
             child: const Icon(Icons.add),

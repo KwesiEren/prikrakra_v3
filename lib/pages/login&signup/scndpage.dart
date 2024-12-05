@@ -67,154 +67,166 @@ class _SignUpState extends State<SignUp> {
               width: screen.width,
               height: screen.height,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
                     // color: Colors.red,
                     width: screen.width,
-                    height: screen.height * 0.4,
+                    height: screen.height * 0.2,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 30),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(19, 62, 135, 1),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  GlassBox(
-                    height: screen.height * 0.00055,
-                    child: Container(
-                      padding: const EdgeInsets.only(left: 45, right: 45),
-                      child: Column(
-                        children: [
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          RichText(
-                            text: const TextSpan(
-                              text:
-                                  'Looks like you don\'t have an Account.\nLet\'s create one for now and ',
+                  Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(left: 30),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Sign Up',
                               style: TextStyle(
-                                color: Color.fromRGBO(96, 139, 193, 1),
-                              ), // General text style
-                              children: <TextSpan>[
-                                TextSpan(
-                                  text: 'join our Community.', // Word 'there'
-                                  style: TextStyle(
-                                      color: Color.fromRGBO(96, 139, 193, 1),
-                                      fontWeight: FontWeight
-                                          .w700), // 'there' in blue color
-                                ),
-                                TextSpan(
-                                  text: '.', // Text after 'there'
-                                  style: TextStyle(
-                                      color:
-                                          Colors.black), // General text style
-                                ),
-                              ],
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromRGBO(19, 62, 135, 1),
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      GlassBox(
+                        // height: screen.height * 0.00055,
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 45, right: 45),
+                          child: Column(
                             children: [
-                              InputField(
-                                displaytxt: 'Username',
-                                hidetxt: false,
-                                borderRadius: 20,
-                                contrlr: _userinput,
+                              const SizedBox(
+                                height: 30,
+                              ),
+                              RichText(
+                                text: const TextSpan(
+                                  text:
+                                      'Looks like you don\'t have an Account.\nLet\'s create one for now and ',
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(96, 139, 193, 1),
+                                  ), // General text style
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                      text:
+                                          'join our Community.', // Word 'there'
+                                      style: TextStyle(
+                                          color:
+                                              Color.fromRGBO(96, 139, 193, 1),
+                                          fontWeight: FontWeight
+                                              .w700), // 'there' in blue color
+                                    ),
+                                    TextSpan(
+                                      text: '.', // Text after 'there'
+                                      style: TextStyle(
+                                          color: Colors
+                                              .black), // General text style
+                                    ),
+                                  ],
+                                ),
                               ),
                               const SizedBox(
-                                height: 20,
+                                height: 10,
                               ),
-                              InputField(
-                                displaytxt: 'Email',
-                                hidetxt: false,
-                                borderRadius: 20,
-                                contrlr: _emailinput,
+                              Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  InputField(
+                                    displaytxt: 'Username',
+                                    hidetxt: false,
+                                    borderRadius: 20,
+                                    contrlr: _userinput,
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  InputField(
+                                    displaytxt: 'Email',
+                                    hidetxt: false,
+                                    borderRadius: 20,
+                                    contrlr: _emailinput,
+                                  ),
+                                  const SizedBox(
+                                    height: 20,
+                                  ),
+                                  InputField(
+                                    displaytxt: 'Password',
+                                    hidetxt: true,
+                                    borderRadius: 20,
+                                    contrlr: _passwrdinput,
+                                  ),
+                                ],
                               ),
                               const SizedBox(
-                                height: 20,
-                              ),
-                              InputField(
-                                displaytxt: 'Password',
-                                hidetxt: true,
-                                borderRadius: 20,
-                                contrlr: _passwrdinput,
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              signup();
-                              //Navigator.pushNamed(context, '/todo_scrn');
-                            },
-                            child: ButnTyp1(
-                              text: 'SignUp',
-                              size: 20,
-                              btnColor: const Color.fromRGBO(19, 62, 135, 1),
-                              borderRadius: 5,
-                            ),
-                          ),
-                          const Text(
-                            'or',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 15,
-                              color: Color.fromRGBO(96, 139, 193, 1),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text(
-                                'Do you have an account? ',
-                                style: TextStyle(
-                                  color: Color.fromRGBO(96, 139, 193, 1),
-                                  fontSize: 15,
-                                ),
+                                height: 10,
                               ),
                               GestureDetector(
                                 onTap: () {
-                                  Navigator.pushNamed(context, '/login');
+                                  signup();
+                                  //Navigator.pushNamed(context, '/todo_scrn');
                                 },
-                                child: const Text(
-                                  'Login',
-                                  style: TextStyle(
-                                      decoration: TextDecoration.underline,
-                                      decorationThickness: 2,
-                                      decorationColor:
-                                          Color.fromRGBO(96, 139, 193, 1),
-                                      color: Color.fromRGBO(96, 139, 193, 1),
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w700),
+                                child: ButnTyp1(
+                                  text: 'SignUp',
+                                  size: 20,
+                                  btnColor:
+                                      const Color.fromRGBO(19, 62, 135, 1),
+                                  borderRadius: 5,
                                 ),
                               ),
+                              const Text(
+                                'or',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 15,
+                                  color: Color.fromRGBO(96, 139, 193, 1),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    'Do you have an account? ',
+                                    style: TextStyle(
+                                      color: Color.fromRGBO(96, 139, 193, 1),
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.pushNamed(context, '/login');
+                                    },
+                                    child: const Text(
+                                      'Login',
+                                      style: TextStyle(
+                                          decoration: TextDecoration.underline,
+                                          decorationThickness: 2,
+                                          decorationColor:
+                                              Color.fromRGBO(96, 139, 193, 1),
+                                          color:
+                                              Color.fromRGBO(96, 139, 193, 1),
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              )
                             ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),

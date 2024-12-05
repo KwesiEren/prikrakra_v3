@@ -5,6 +5,7 @@ import 'package:prikrakra_v3/services/localdb_config/db_provider.dart';
 import 'package:prikrakra_v3/utils/security_scheme.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../theme_control.dart';
 import '../utils/shared_preferences_helper.dart';
 
 class EditUserPage extends StatefulWidget {
@@ -30,7 +31,7 @@ class _EditUserPageState extends State<EditUserPage> {
     showToast(
       message,
       context: context,
-      backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
+      backgroundColor: ThemeCtrl.colors.color1,
     );
   }
 
@@ -89,8 +90,8 @@ class _EditUserPageState extends State<EditUserPage> {
       appBar: AppBar(
         title: const Text('Edit Details'),
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
-        foregroundColor: Colors.white,
+        backgroundColor: ThemeCtrl.colors.color1,
+        foregroundColor: ThemeCtrl.colors.colorw,
       ),
       body: SafeArea(
           child: Center(
@@ -99,7 +100,7 @@ class _EditUserPageState extends State<EditUserPage> {
           width: screen.width,
           decoration:
               //Background Image block:
-              const BoxDecoration(color: Color.fromRGBO(243, 243, 224, 1)),
+              BoxDecoration(color: ThemeCtrl.colors.colorbg),
           child: Form(
               key: _formKey,
               child: ListView(
@@ -303,7 +304,7 @@ class _EditUserPageState extends State<EditUserPage> {
                       child: ButnTyp1(
                           text: 'Update Details',
                           size: 15,
-                          btnColor: const Color.fromRGBO(19, 62, 135, 1),
+                          btnColor: ThemeCtrl.colors.color1,
                           borderRadius: 5))
                   //  ElevatedButton(
                   //   style: ButtonStyle(

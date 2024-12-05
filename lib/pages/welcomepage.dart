@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../services/supabase_config/sb_auth.dart';
+import '../theme_control.dart';
 import 'authed/worksheet.dart';
 
 //Welcome Screen, just that lol.
@@ -78,20 +79,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               height: 30,
             ),
             Container(
-              child: const Column(
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     "Welcome!",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: ThemeCtrl.colors.color1,
                       fontSize: 50,
                     ),
                   ),
                   Text(
                     "Get started",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: ThemeCtrl.colors.color1,
                       fontSize: 30,
                     ),
                   )

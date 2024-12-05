@@ -6,6 +6,7 @@ import '../../components/button2.dart';
 import '../../components/button3.dart';
 import '../../components/guestview_list.dart';
 import '../../models/gtask.dart';
+import '../../theme_control.dart';
 import '../../utils/shared_preferences_helper.dart';
 import 'addtodo_page.dart';
 import 'edittodo_page.dart';
@@ -104,8 +105,8 @@ class _GuestviewPageState extends State<GuestviewPage> {
           automaticallyImplyLeading: false,
           title: const Text('To-Do'),
           centerTitle: true,
-          backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
-          foregroundColor: Colors.white,
+          backgroundColor: ThemeCtrl.colors.color1,
+          foregroundColor: ThemeCtrl.colors.colorw,
         ),
 
         //Codes for Drawer begin here
@@ -146,46 +147,55 @@ class _GuestviewPageState extends State<GuestviewPage> {
                   height: 10,
                 ),
                 const Divider(),
-                const SizedBox(
-                  height: 50,
+                // const SizedBox(
+                //   height: 50,
+                // ),
+                Column(
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Column(
+                      children: [
+                        ListTile(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/statistics');
+                          },
+                          title: ButnTyp2(
+                              text: 'Statistics',
+                              size: 20,
+                              btnColor: ThemeCtrl.colors.color1,
+                              borderRadius: 5),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        ListTile(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/tNc');
+                          },
+                          title: ButnTyp2(
+                              text: 'Terms and Conditions',
+                              size: 20,
+                              btnColor: ThemeCtrl.colors.color1,
+                              borderRadius: 5),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: screen.height * 0.25,
+                    ),
+                    ListTile(
+                      onTap: () {
+                        _opensession();
+                      },
+                      title: ButnTyp3(
+                          text: 'Log in',
+                          size: 20,
+                          btnColor: ThemeCtrl.colors.colorbtn1,
+                          borderRadius: 5),
+                    ),
+                  ],
                 ),
 
-                ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/statistics');
-                  },
-                  title: ButnTyp2(
-                      text: 'Statistics',
-                      size: 20,
-                      btnColor: const Color.fromRGBO(19, 62, 135, 10),
-                      borderRadius: 5),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                ListTile(
-                  onTap: () {
-                    Navigator.pushNamed(context, '/tNc');
-                  },
-                  title: ButnTyp2(
-                      text: 'Terms and Conditions',
-                      size: 20,
-                      btnColor: const Color.fromRGBO(19, 62, 135, 10),
-                      borderRadius: 5),
-                ),
-                const SizedBox(
-                  height: 120,
-                ),
-                ListTile(
-                  onTap: () {
-                    _opensession();
-                  },
-                  title: ButnTyp3(
-                      text: 'Log in',
-                      size: 20,
-                      btnColor: Colors.redAccent,
-                      borderRadius: 5),
-                ),
                 // Container(
                 //   color: Colors.greenAccent,
                 //   height: screen.height * 0.03,
@@ -202,7 +212,7 @@ class _GuestviewPageState extends State<GuestviewPage> {
             width: screen.width,
             decoration:
                 //Background Image block:
-                const BoxDecoration(color: Color.fromRGBO(243, 243, 224, 1)),
+                BoxDecoration(color: ThemeCtrl.colors.colorbg),
             child: Center(
               child: RefreshIndicator(
                 onRefresh: _loadTodos,
@@ -211,12 +221,12 @@ class _GuestviewPageState extends State<GuestviewPage> {
                         child: CircularProgressIndicator(),
                       )
                     : _guestTask.isEmpty
-                        ? const Text(
+                        ? Text(
                             'The list is empty!',
                             style: TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
-                              color: const Color.fromRGBO(96, 139, 193, 100),
+                              color: ThemeCtrl.colors.color3,
                             ),
                           )
                         : ListView.builder(
@@ -251,8 +261,7 @@ class _GuestviewPageState extends State<GuestviewPage> {
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
-                                        color: const Color.fromRGBO(
-                                            203, 220, 235, 1),
+                                        color: ThemeCtrl.colors.color3,
                                         borderRadius: BorderRadius.circular(10),
                                         boxShadow: const [
                                           BoxShadow(
@@ -274,9 +283,9 @@ class _GuestviewPageState extends State<GuestviewPage> {
                                       trailing: IconButton(
                                         onPressed: () =>
                                             _deleteTodo(_guestTask[index]!.id),
-                                        icon: const Icon(
+                                        icon: Icon(
                                           Icons.delete,
-                                          color: Colors.red,
+                                          color: ThemeCtrl.colors.colorbtn1,
                                         ),
                                       ),
                                     ),
@@ -291,7 +300,7 @@ class _GuestviewPageState extends State<GuestviewPage> {
         //BODY ENDS HERE
 
         floatingActionButton: FloatingActionButton(
-          backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
+          backgroundColor: ThemeCtrl.colors.colorbg,
           foregroundColor: Colors.white,
           hoverColor: Colors.white70,
           onPressed: _navigateToaddGuestTodo,

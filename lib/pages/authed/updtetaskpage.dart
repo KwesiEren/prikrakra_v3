@@ -5,6 +5,7 @@ import '../../models/task.dart';
 import '../../models/task_type.dart';
 import '../../services/localdb_config/db_provider.dart';
 import '../../services/supabase_config/sb_db.dart';
+import '../../theme_control.dart';
 
 class EditTodoScreen extends StatefulWidget {
   final Todo? todo;
@@ -77,8 +78,8 @@ class _EditTodoScreenState extends State<EditTodoScreen> {
       appBar: AppBar(
         title: const Text('Edit Todo'),
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
-        foregroundColor: Colors.white,
+        backgroundColor: ThemeCtrl.colors.colorbg,
+        foregroundColor: ThemeCtrl.colors.colorw,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -126,7 +127,7 @@ class _EditTodoScreenState extends State<EditTodoScreen> {
                   child: ButnTyp1(
                       text: 'Save Changes',
                       size: 20,
-                      btnColor: const Color.fromRGBO(19, 62, 135, 1),
+                      btnColor: ThemeCtrl.colors.colorbg,
                       borderRadius: 5))
             ],
           ),

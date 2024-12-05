@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
+import '../theme_control.dart';
+
 class TermsAndCondPage extends StatefulWidget {
   const TermsAndCondPage({super.key});
 
@@ -15,8 +17,8 @@ class _TermsAndCondPageState extends State<TermsAndCondPage> {
       appBar: AppBar(
         title: const Text('Terms and Conditions'),
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
-        foregroundColor: Colors.white,
+        backgroundColor: ThemeCtrl.colors.color1,
+        foregroundColor: ThemeCtrl.colors.color1,
       ),
       body: SfPdfViewer.asset(
         "assets/terms_conditions.pdf", // Path to the PDF file

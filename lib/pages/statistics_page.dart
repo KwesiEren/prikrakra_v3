@@ -6,6 +6,7 @@ import '../models/gtask.dart';
 import '../models/task.dart';
 import '../services/localdb_config/db_provider.dart';
 import '../services/supabase_config/sb_auth.dart';
+import '../theme_control.dart';
 
 class StatisticsPage extends StatefulWidget {
   const StatisticsPage({super.key});
@@ -110,8 +111,8 @@ class _StatisticsPageState extends State<StatisticsPage> {
       appBar: AppBar(
         title: const Text('Statistics'),
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
-        foregroundColor: Colors.white,
+        backgroundColor: ThemeCtrl.colors.color1,
+        foregroundColor: ThemeCtrl.colors.colorw,
       ),
       body: SafeArea(
         child: Center(
@@ -119,7 +120,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
             width: screen.width,
             decoration:
                 //Background Image block:
-                const BoxDecoration(color: Color.fromRGBO(243, 243, 224, 1)
+                BoxDecoration(color: ThemeCtrl.colors.colorbg
                     // image: DecorationImage(
                     //     fit: BoxFit.cover, image: AssetImage('assets/bg3.jpg')),
                     ),
@@ -135,7 +136,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                         width: screen.width * 0.4,
                         height: screen.height * 0.25,
                         decoration: BoxDecoration(
-                          color: const Color.fromRGBO(96, 139, 193, 1),
+                          color: ThemeCtrl.colors.color3,
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: const [
                             BoxShadow(
@@ -164,7 +165,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                         width: screen.width * 0.4,
                         height: screen.height * 0.25,
                         decoration: BoxDecoration(
-                          color: const Color.fromARGB(208, 76, 175, 79),
+                          color: ThemeCtrl.colors.color5,
                           borderRadius: BorderRadius.circular(10),
                           boxShadow: const [
                             BoxShadow(
@@ -197,7 +198,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
                   // width: screen.width * 0.5,
                   height: screen.height * 0.1,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(96, 139, 193, 1),
+                    color: ThemeCtrl.colors.color3,
                     borderRadius: BorderRadius.circular(10),
                     boxShadow: const [
                       BoxShadow(
@@ -210,25 +211,25 @@ class _StatisticsPageState extends State<StatisticsPage> {
                   child: Center(
                     child: Text(
                       '$uncompletedTasks Tasks left to complete.', // Convert to string
-                      style: const TextStyle(
-                          fontSize: 25, color: Color.fromARGB(205, 0, 0, 0)),
+                      style: TextStyle(
+                          fontSize: 25, color: ThemeCtrl.colors.color4),
                     ),
                   ),
                 ),
                 if (uncompletedTasks != 0)
                   Container(
-                    child: const Text(
+                    child: Text(
                         'You have still have work to finish, don\'t be a slacker!',
                         style: TextStyle(
-                            fontSize: 16, color: Color.fromARGB(205, 0, 0, 0))),
+                            fontSize: 16, color: ThemeCtrl.colors.color4)),
                   )
                 else
                   Container(
-                    child: const Text(
+                    child: Text(
                         textAlign: TextAlign.center,
                         'Well done!\nYou have completed all your tasks\n Congrats!',
                         style: TextStyle(
-                            fontSize: 25, color: Color.fromARGB(134, 0, 0, 0))),
+                            fontSize: 25, color: ThemeCtrl.colors.color4)),
                   ),
               ],
             ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../components/button.dart';
 import '../../models/gtask.dart';
+import '../../theme_control.dart';
 import '../../utils/shared_preferences_helper.dart';
 
 class EditGuestTodoScreen extends StatefulWidget {
@@ -63,14 +64,14 @@ class _EditGuestTodoScreenState extends State<EditGuestTodoScreen> {
       appBar: AppBar(
         title: const Text('Edit Todo'),
         centerTitle: true,
-        backgroundColor: const Color.fromRGBO(19, 62, 135, 1),
+        backgroundColor: ThemeCtrl.colors.color1,
         foregroundColor: Colors.white,
       ),
       body: Container(
         width: screen.width,
         decoration:
             //Background Image block:
-            const BoxDecoration(color: Color.fromRGBO(243, 243, 224, 1)
+            BoxDecoration(color: ThemeCtrl.colors.colorbg
                 // image: DecorationImage(
                 //     fit: BoxFit.cover, image: AssetImage('assets/bg3.jpg')),
                 ),
@@ -105,7 +106,7 @@ class _EditGuestTodoScreenState extends State<EditGuestTodoScreen> {
                     child: ButnTyp1(
                         text: 'Save Changes',
                         size: 20,
-                        btnColor: const Color.fromRGBO(19, 62, 135, 1),
+                        btnColor: ThemeCtrl.colors.color1,
                         borderRadius: 5))
               ],
             ),
