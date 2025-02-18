@@ -1,3 +1,4 @@
+import '../theme_control.dart';
 import 'package:flutter/material.dart';
 
 class toDolist extends StatefulWidget {
@@ -49,7 +50,7 @@ class _toDolistState extends State<toDolist> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        color: Colors.black,
+                        color: ThemeCtrl.colors.colortxt1,
                         fontSize: 20,
                         decoration: widget.taskCompleted
                             ? TextDecoration.lineThrough
@@ -64,7 +65,8 @@ class _toDolistState extends State<toDolist> {
                     widget.taskDetail ?? '',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(color: Colors.black45, fontSize: 15),
+                    style: TextStyle(
+                        color: ThemeCtrl.colors.colortxt1, fontSize: 15),
                   )
                 ],
               ),

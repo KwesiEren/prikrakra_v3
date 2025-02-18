@@ -1,14 +1,12 @@
 import 'dart:async';
-
-import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-import '../../components/todo_list.dart';
-import '../../models/task.dart';
-import '../../services/localdb_config/db_provider.dart';
-import '../../services/supabase_config/sb_auth.dart';
-import '../../services/supabase_config/sb_db.dart';
 import 'updtetaskpage.dart';
+import '../../models/task.dart';
+import 'package:flutter/material.dart';
+import '../../components/todo_list.dart';
+import '../../services/supabase_config/sb_db.dart';
+import '../../services/supabase_config/sb_auth.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import '../../services/localdb_config/db_provider.dart';
 
 class OnlyUserTask extends StatefulWidget {
   const OnlyUserTask({super.key});
@@ -43,8 +41,6 @@ class _OnlyUserTaskState extends State<OnlyUserTask> {
     await _syncLocalTodosToSupabase();
     debugPrint('Sync is running every 30 seconds');
   }
-
-  
 
   Future<void> _loadUserTodos() async {
     setState(() {
@@ -136,7 +132,7 @@ class _OnlyUserTaskState extends State<OnlyUserTask> {
       // Mark todos as synced in the local database
       for (var todo in unsyncedTodos) {
         todo!.isSynced = true;
-        await AppDB.instance.updateTodoSyncStatus(todo.id!, true);
+        await AppDB.instance.updateTodoSyncStatus(todo.id, true);
       }
       debugPrint("Successfully synced todos.");
     }
@@ -153,8 +149,7 @@ class _OnlyUserTaskState extends State<OnlyUserTask> {
       _todoList[index]!.status = updatedStatus;
     });
 
-    await AppDB.instance
-        .updateTodoStatus(_todoList[index]!.id as String, updatedStatus);
+    await AppDB.instance.updateTodoStatus(_todoList[index]!.id, updatedStatus);
 
     if (_isOnline) {
       final response = await Supabase.instance.client

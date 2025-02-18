@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prikrakra_v3/theme_control.dart';
 
 class GuestTask extends StatefulWidget {
   const GuestTask({
@@ -49,7 +50,7 @@ class _GuestTaskState extends State<GuestTask> {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                        color: Colors.black,
+                        color: ThemeCtrl.colors.colortxt1,
                         fontSize: 20,
                         decoration: widget.taskCompleted
                             ? TextDecoration.lineThrough
@@ -64,7 +65,8 @@ class _GuestTaskState extends State<GuestTask> {
                     widget.taskDetail ?? '',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(color: Colors.black45, fontSize: 15),
+                    style: TextStyle(
+                        color: ThemeCtrl.colors.colortxt1, fontSize: 15),
                   )
                 ],
               ),

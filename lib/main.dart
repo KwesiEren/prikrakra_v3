@@ -1,16 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:prikrakra_v3/pages/edit_user_page.dart';
-
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-import 'pages/statistics_page.dart';
-import 'pages/login&signup/firstpage.dart';
-import 'pages/login&signup/scndpage.dart';
-import 'pages/survey.dart';
-import 'pages/terms_conditions_page.dart';
-import 'pages/unauthed/guestview_page.dart';
 import 'pages/welcomepage.dart';
+import 'pages/statistics_page.dart';
+import 'package:flutter/material.dart';
+import 'pages/login&signup/scndpage.dart';
+import 'pages/terms_conditions_page.dart';
+import 'pages/login&signup/firstpage.dart';
+import 'pages/unauthed/guestview_page.dart';
 import 'services/localdb_config/db_provider.dart';
+import 'package:prikrakra_v3/pages/edit_user_page.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 // Okay so to get it out there I am not good at explaining
 // stuff but I will try my best to give you clarity on the apps codes
@@ -50,7 +47,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginPage(),
         '/signup': (context) => const SignUp(),
         '/statistics': (context) => const StatisticsPage(),
-        '/edwin': (context) => const SurveyPage(),
+
         '/edit_details': (context) => const EditUserPage(),
         '/tNc': (context) => const TermsAndCondPage(),
       },

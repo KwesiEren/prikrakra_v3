@@ -1,8 +1,6 @@
 import 'dart:convert';
-
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../models/gtask.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 //
 class SharedPreferencesHelper {
@@ -41,12 +39,6 @@ class SharedPreferencesHelper {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(_userKey, password);
   }
-
-  // // Can edit
-  // static Future<String?> getKeys() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   return prefs.getString(_userKey);
-  // }
 
   // Save user team
   static Future<void> saveUserTeam(String team) async {

@@ -1,15 +1,13 @@
 import 'dart:io';
-
+import 'addtodo_page.dart';
+import 'edittodo_page.dart';
+import '../../models/gtask.dart';
+import '../../theme_control.dart';
 import 'package:flutter/material.dart';
-
 import '../../components/button2.dart';
 import '../../components/button3.dart';
 import '../../components/guestview_list.dart';
-import '../../models/gtask.dart';
-import '../../theme_control.dart';
 import '../../utils/shared_preferences_helper.dart';
-import 'addtodo_page.dart';
-import 'edittodo_page.dart';
 
 class GuestviewPage extends StatefulWidget {
   const GuestviewPage({super.key});
@@ -300,7 +298,7 @@ class _GuestviewPageState extends State<GuestviewPage> {
         //BODY ENDS HERE
 
         floatingActionButton: FloatingActionButton(
-          backgroundColor: ThemeCtrl.colors.colorbg,
+          backgroundColor: ThemeCtrl.colors.color1,
           foregroundColor: Colors.white,
           hoverColor: Colors.white70,
           onPressed: _navigateToaddGuestTodo,

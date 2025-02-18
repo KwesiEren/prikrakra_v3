@@ -1,7 +1,5 @@
-import 'package:sqflite/utils/utils.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../../models/task.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 //This is the codes to handle the Online database.
 //The Supabase client was initialized in main.dart file so there
@@ -44,7 +42,7 @@ class SupaDB {
     await Supabase.instance.client
         .from('todoTable')
         .update(todo.toJson())
-        .eq('id', todo.id!);
+        .eq('id', todo.id);
   }
 
   // Update isSync parameter of Todo to Supabase database

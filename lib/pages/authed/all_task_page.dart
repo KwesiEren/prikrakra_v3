@@ -1,11 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../components/view_list.dart';
 import '../../models/task.dart';
-import '../../services/localdb_config/db_provider.dart';
 import '../../services/supabase_config/sb_db.dart';
 
 class AllTask extends StatefulWidget {

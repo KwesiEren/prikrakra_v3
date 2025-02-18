@@ -1,12 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:prikrakra_v3/components/button.dart';
-import 'package:prikrakra_v3/services/localdb_config/db_provider.dart';
-import 'package:prikrakra_v3/utils/security_scheme.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../theme_control.dart';
+import 'package:flutter/material.dart';
 import '../utils/shared_preferences_helper.dart';
+import 'package:prikrakra_v3/components/button.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:prikrakra_v3/utils/security_scheme.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:prikrakra_v3/services/localdb_config/db_provider.dart';
 
 class EditUserPage extends StatefulWidget {
   const EditUserPage({super.key});
@@ -306,13 +305,6 @@ class _EditUserPageState extends State<EditUserPage> {
                           size: 15,
                           btnColor: ThemeCtrl.colors.color1,
                           borderRadius: 5))
-                  //  ElevatedButton(
-                  //   style: ButtonStyle(
-                  //     backgroundColor: ,
-                  //   ),
-                  //   onPressed: _submitForm,
-                  //   child: Text('Update Details'),
-                  // ),
                 ],
               )),
         ),

@@ -10,8 +10,6 @@ extension TaskTypeExtn on TaskType {
         return "Today";
       case TaskType.urgent:
         return "Urgent";
-      default:
-        return "";
     }
   }
 

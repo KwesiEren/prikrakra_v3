@@ -1,10 +1,8 @@
 import 'dart:async';
-
-import 'package:flutter/material.dart';
-
-import '../services/supabase_config/sb_auth.dart';
 import '../theme_control.dart';
 import 'authed/worksheet.dart';
+import 'package:flutter/material.dart';
+import '../services/supabase_config/sb_auth.dart';
 
 //Welcome Screen, just that lol.
 
@@ -67,8 +65,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             //Background Image here:
             const BoxDecoration(
           image: DecorationImage(
-            fit: BoxFit.cover,
-            image: AssetImage('assets/bg1.jpg'),
+            fit: BoxFit.contain,
+            image: AssetImage('assets/bg4.jpeg'),
           ),
         ),
         child: Column(
