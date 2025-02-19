@@ -2,15 +2,5 @@
 
 Todo App
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Overview
+Prikrakra is a Flutter-based Todo app designed to manage employee tasks and objectives. It allows employers to track task progress while enabling employees to manage their assigned jobs efficiently. The app also functions as a personal task manager in guest mode, offering offline and online functionality for different user types.
